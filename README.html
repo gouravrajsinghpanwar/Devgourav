@@ -1,1 +1,269 @@
-# Devgourav
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gourav - Web Developer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/1234567" />
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: radial-gradient(circle at top left, #0f0c29, #302b63, #24243e);
+      scroll-behavior: smooth;
+      cursor: none;
+      overflow-x: hidden;
+    }
+    .gradient-text {
+      background: linear-gradient(to right, #00ffe7, #ff00c8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .scroll-container {
+      display: flex;
+      overflow-x: auto;
+      gap: 2rem;
+      padding: 5rem 0;
+      scroll-snap-type: x mandatory;
+    }
+    .scroll-container::-webkit-scrollbar {
+      display: none;
+    }
+    .scroll-card {
+      flex: 10 0 280px;
+      height: 280px;
+      border-radius: 1.5rem;
+      background-color: rgba(31, 41, 55, 0.5);
+      scroll-snap-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      transform: scale(0.85);
+      opacity: 0.1;
+      cursor: pointer;
+    }
+    .scroll-card.active {
+      transform: scale(1.2);
+      opacity: 1;
+      box-shadow: 0 0 40px rgba(0, 255, 255, 0.3);
+    }
+    .scroll-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #a855f7;
+    }
+    button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px #a855f7;
+      transition: all 0.3s ease;
+    }
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .popup-content {
+      background: #111827;
+      padding: 2rem;
+      border-radius: 1rem;
+      max-width: 90%;
+      text-align: center;
+    }
+    #particles-js {
+      position: fixed;
+      z-index: -1;
+      inset: 0;
+    }
+    footer {
+      border-top: 2px solid transparent;
+      border-image: linear-gradient(to right, #9333ea, #f43f5e);
+      border-image-slice: 1;
+    }
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      background: #a855f7;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.15s ease-out;
+    }
+  </style>
+</head>
+<body class="text-white">
+  <div id="particles-js"></div>
+
+  <nav class="fixed top-0 left-0 w-full bg-[#111827]/80 backdrop-blur-lg z-50 shadow">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <h1 class="text-xl font-bold gradient-text">Gourav</h1>
+      <div class="space-x-6 text-sm">
+        <a href="#about" class="text-gray-300 hover:text-white">About</a>
+        <a href="#skills" class="text-gray-300 hover:text-white">Skills</a>
+        <a href="#pricing" class="text-gray-300 hover:text-white">Pricing</a>
+        <a href="#contact" class="text-gray-300 hover:text-white">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="text-center py-32">
+    <h1 class="text-4xl sm:text-5xl font-bold gradient-text mb-4" id="typewriter"></h1>
+    <p class="text-lg text-gray-400 animate-pulse">Web Developer • Designer • Freelancer</p>
+    <div class="mt-6 animate-bounce text-purple-400 text-2xl">↓</div>
+  </header>
+
+  <section id="about" class="text-center px-6 max-w-4xl mx-auto py-10">
+    <h2 class="text-3xl font-bold gradient-text mb-4">About Me</h2>
+    <p class="text-gray-300">I'm Gourav Panwar, a passionate freelance web developer and designer who builds modern, responsive, and beautiful websites. I bring ideas to life through clean code and creative design.</p>
+  </section>
+
+  <section id="skills" class="px-6 max-w-7xl mx-auto py-10">
+    <h2 class="text-3xl font-bold gradient-text text-center mb-6">Skills</h2>
+    <div class="scroll-container" id="skills-scroll">
+      <!-- Skill Cards -->
+      <div class="scroll-card" onclick="openPopup('HTML5', 'Semantic HTML and accessibility ready')">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" class="h-12 mb-2" />
+        <p>HTML5</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('CSS3', 'Responsive styling with Flexbox/Grid')">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" class="h-12 mb-2" />
+        <p>CSS3</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('JavaScript', 'DOM, Events, API and Logic')">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" class="h-12 mb-2" />
+        <p>JavaScript</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('Tailwind CSS', 'Utility-first modern UI')">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg" class="h-12 mb-2" />
+        <p>Tailwind</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('React', 'Component based SPA')">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" class="h-12 mb-2" />
+        <p>React</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="px-6 max-w-7xl mx-auto py-10">
+    <h2 class="text-3xl font-bold gradient-text text-center mb-6">Pricing</h2>
+    <div class="scroll-container" id="pricing-scroll">
+      <div class="scroll-card" onclick="openPopup('Basic Website', '1 Page - ₹4k to ₹7k')">
+        <h4 class="text-purple-400 font-bold text-lg mb-1">Basic</h4>
+        <p>₹4k – ₹7k</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('Pro Website', 'Multi-page - ₹10k to ₹25k')">
+        <h4 class="text-purple-400 font-bold text-lg mb-1">Pro</h4>
+        <p>₹10k – ₹25k</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('Premium Website', 'Advanced Design - ₹30k to ₹60k')">
+        <h4 class="text-purple-400 font-bold text-lg mb-1">Premium</h4>
+        <p>₹30k – ₹60k</p>
+      </div>
+      <div class="scroll-card" onclick="openPopup('Business Suite', 'Web + App + Branding - ₹75k+')">
+        <h4 class="text-purple-400 font-bold text-lg mb-1">Business</h4>
+        <p>₹75k+</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="px-6 max-w-3xl mx-auto py-16">
+    <h2 class="text-3xl font-bold gradient-text text-center mb-6">Contact Me</h2>
+    <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thanks for reaching out!')">
+      <input type="text" placeholder="Your Name" class="w-full px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400" />
+      <input type="email" placeholder="Your Email" class="w-full px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400" />
+      <textarea rows="4" placeholder="Your Message" class="w-full px-4 py-2 rounded bg-gray-800 text-white placeholder-gray-400"></textarea>
+      <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-2 rounded-full">Send Message</button>
+    </form>
+  </section>
+
+  <a href="https://wa.me/+919343438021" target="_blank" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 p-3 rounded-full shadow-lg z-50">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp" class="w-8 h-8" />
+  </a>
+
+  <footer class="text-center text-sm text-gray-400 py-6">
+    © 2025 <span class="gradient-text font-semibold">Gourav Panwar</span>. All rights reserved.
+  </footer>
+
+  <div class="cursor" id="cursor"></div>
+
+  <script>
+    const cursor = document.getElementById("cursor");
+    document.addEventListener("mousemove", (e) => {
+      cursor.style.left = e.clientX + "px";
+      cursor.style.top = e.clientY + "px";
+    });
+
+    const text = "Hi, I'm Gourav Panwar|";
+    let i = 0;
+    function typeEffect() {
+      if (i < text.length) {
+        document.getElementById("typewriter").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 100);
+      } else {
+        setInterval(() => {
+          const el = document.getElementById("typewriter");
+          el.innerHTML = el.innerHTML.endsWith('|') ? el.innerHTML.slice(0, -1) : el.innerHTML + '|';
+        }, 500);
+      }
+    }
+    typeEffect();
+
+    function openPopup(title, desc) {
+      const overlay = document.createElement('div');
+      overlay.className = 'popup-overlay';
+      overlay.innerHTML = `
+        <div class="popup-content">
+          <h2 class="text-2xl font-bold text-purple-400 mb-2">${title}</h2>
+          <p class="text-gray-300">${desc.replace(/\n/g, '<br>')}</p>
+          <button onclick="this.closest('.popup-overlay').remove()" class="mt-4 bg-purple-600 px-4 py-2 rounded-full hover:bg-purple-700">Close</button>
+        </div>`;
+      document.body.appendChild(overlay);
+    }
+
+    function addActiveEffect(containerId) {
+      const container = document.getElementById(containerId);
+      container.addEventListener('scroll', () => {
+        const cards = container.querySelectorAll('.scroll-card');
+        const center = container.offsetWidth / 2;
+        cards.forEach(card => {
+          const rect = card.getBoundingClientRect();
+          const cardCenter = rect.left + rect.width / 2;
+          const offset = Math.abs(center - cardCenter);
+          card.classList.remove('active');
+          if (offset < rect.width / 2) {
+            card.classList.add('active');
+          }
+        });
+      });
+      container.dispatchEvent(new Event('scroll'));
+    }
+
+    addActiveEffect('skills-scroll');
+    addActiveEffect('pricing-scroll');
+
+    ScrollReveal().reveal('section', {
+      origin: 'bottom',
+      distance: '50px',
+      duration: 800,
+      delay: 200,
+      reset: true
+    });
+  </script>
+</body>
+</html>
